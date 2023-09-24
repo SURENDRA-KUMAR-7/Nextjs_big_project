@@ -23,11 +23,11 @@ export async function GET(req) {
                 result = {data:isData,success:true};
                 return NextResponse.json(result,{status:200});
             }else{
-                result = {data:isUser.error,success:false};
+                result = {data:"Plan Buy Now',success:false};
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:"Token Not vailed",success:false};
+        result = {error:isUser.error,success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
