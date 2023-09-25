@@ -28,11 +28,11 @@ export async function GET(req) {
                     return NextResponse.json(result,{status:200});
                 }
             }else{
-                result = {data:req.url,success:false};
+                result = {data:"No Data",success:false};
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:"Token Not vailed",success:false};
+        result = {error:req.url,success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
