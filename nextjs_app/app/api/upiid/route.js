@@ -43,7 +43,8 @@ return NextResponse.json(result,{status:403});
 export async function POST(req) {
     let result;
     try{
-    const isUser = await dataFromToken(req);
+         const token = await req.cookies.get("authToken")?.value || '';
+    const isUser = await dataFromToken(token);
         if(isUser.success){
             const {name, phone, upiid} = await req.json();
             const userid = (isUser.userId).toString();
