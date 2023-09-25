@@ -21,6 +21,7 @@ const Network = () => {
               toast.error("Server Error Try Again!");
               return
             }
+            console.log(noCode);
             toast.warning(noCode);
           }
           setIsLoading(false);
