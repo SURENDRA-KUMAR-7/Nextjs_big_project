@@ -6,7 +6,7 @@ export async function GET(req){
     try{
         const url = await req
         const response = NextResponse.json({success:true,message:"Logout Successfully"},{status:200});
-        response.cookies.set("authToken",'',{ secure: true, httpOnly: true});
+        response.cookies.set("authToken",'  ',{ secure: true, httpOnly: true});
         return response;
     }catch(err){
         // console.log();
