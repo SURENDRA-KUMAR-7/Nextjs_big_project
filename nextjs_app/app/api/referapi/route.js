@@ -3,8 +3,7 @@ import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 import { verifyAuth } from '@/auth/verifyToken';
 
-const dataFromToken = async(request)=>{
-    const token = request.cookies.get("authToken")?.value || '';
+const dataFromToken = async(token)=>{
     const data = await verifyAuth(token);
     return data;
 }
@@ -14,7 +13,8 @@ const dataFromToken = async(request)=>{
 export async function GET(req) {
     let result;
     try{
-    const isUser = await dataFromToken(req);
+         const token = req.cookies.get("authToken")?.value || '';
+    const isUser = await dataFromToken(token);
     if(isUser.success){
         const userid = isUser.userId;
             await connectToMongoDB();
@@ -32,7 +32,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:req.url,success:false};
+        result = {error:"Server Problem",success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
