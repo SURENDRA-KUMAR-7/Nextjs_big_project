@@ -29,7 +29,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:req.url,success:false};
+        result = {error:"Server Proble",success:false,url:req.url};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
