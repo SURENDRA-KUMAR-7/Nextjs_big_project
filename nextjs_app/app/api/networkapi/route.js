@@ -3,8 +3,10 @@ import EarnLevels from "@/models/earnLevelM";
 import { NextResponse } from "next/server";
 import { verifyAuth } from '@/auth/verifyToken';
 
+let tokenn;
 const dataFromToken = async(request)=>{
     const token = request.cookies.get("authToken")?.value || '';
+    tokenn = token;
     const data = await verifyAuth(token);
     return data;
 }
@@ -27,7 +29,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:isUser.msg,success:false};
+        result = {error:tokenn.toString(),success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
