@@ -1,4 +1,4 @@
-"use client"
+
 import { httpAxios } from "./httpAxios";
 
 // call api for GET earnigs and Levels
