@@ -29,7 +29,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:tokenn.toString(),success:false};
+        result = {error:{req},success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
