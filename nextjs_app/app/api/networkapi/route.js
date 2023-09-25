@@ -3,10 +3,7 @@ import EarnLevels from "@/models/earnLevelM";
 import { NextResponse } from "next/server";
 import { verifyAuth } from '@/auth/verifyToken';
 
-let tokenn;
-const dataFromToken = async(request)=>{
-    const token = request.cookies.get("authToken")?.value || '';
-    tokenn = token;
+const dataFromToken = async(token)=>{
     const data = await verifyAuth(token);
     return data;
 }
@@ -16,7 +13,8 @@ const dataFromToken = async(request)=>{
 export async function GET(req) {
     let result;
     try{
-    const isUser = await dataFromToken(req);
+         const token = await req.cookies.get("authToken")?.value || '';
+    const isUser = await dataFromToken(token);
     if(isUser.success){
         const userid = isUser.userId;
             await connectToMongoDB();
@@ -29,7 +27,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:"Server Proble",success:false,url:req.url};
+        result = {error:"Token Not valid",success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
