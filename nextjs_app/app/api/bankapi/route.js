@@ -31,7 +31,7 @@ export async function GET(req) {
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
-    result = {error:"server problem Try Again!",success:false};
+    result = {error:"server problem Try Again!",success:false,url:req.url};
 return NextResponse.json(result,{status:403});
 }
 
