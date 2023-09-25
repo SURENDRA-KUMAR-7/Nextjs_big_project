@@ -30,6 +30,7 @@ const PlanBuiedRefer = ({baseUrl}) => {
             }
           }
           setIsLoading(false);
+        console.log(fatchRefer);
       }
         getData();
         }, []);
