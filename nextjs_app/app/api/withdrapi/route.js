@@ -17,7 +17,7 @@ const dataFromToken = async(token)=>{
 export async function GET(req) {
     let result;
     try{
-        const token = req.cookies.get("authToken")?.value || '';
+        const token = await req.cookies.get("authToken")?.value || '';
     const isUser = await dataFromToken(token);
     if(isUser.success){
         const userid = isUser.userId;
