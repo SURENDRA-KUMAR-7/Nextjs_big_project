@@ -11,7 +11,7 @@ const Network = () => {
   
     useEffect(() => {
       async function getData() {
-        const response =  fetch("https://nextjs-big-project-self.vercel.app/api/networkapi");
+        const response = await fetch("https://nextjs-big-project-self.vercel.app/api/networkapi");
         const fatchEarn = await response.json();
           if(fatchEarn.success){
             const deta = fatchEarn.data;
