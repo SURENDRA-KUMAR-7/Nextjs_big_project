@@ -12,7 +12,7 @@ const dataFromToken = async(token)=>{
 export async function POST(req){
     let result;
     try{
-        const token = req.cookies.get("authToken")?.value || '';
+        const token = await req.cookies.get("authToken")?.value || '';
         const {amount} = await req.json();
         const isUser = await dataFromToken(token);
         if(isUser.success){
