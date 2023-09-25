@@ -28,7 +28,7 @@ export async function GET(req) {
                     return NextResponse.json(result,{status:200});
                 }
             }else{
-                result = {data:"No Data",success:false};
+                result = {data:req.url,success:false};
                 return NextResponse.json(result,{status:200});
             }
     }else{
