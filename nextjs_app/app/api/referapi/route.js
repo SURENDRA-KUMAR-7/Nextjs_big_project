@@ -13,7 +13,7 @@ const dataFromToken = async(token)=>{
 export async function GET(req) {
     let result;
     try{
-         const token = req.cookies.get("authToken")?.value || '';
+         const token = await req.cookies.get("authToken")?.value || '';
     const isUser = await dataFromToken(token);
     if(isUser.success){
         const userid = isUser.userId;
@@ -32,7 +32,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:"Server Problem",success:false};
+        result = {error:"Token Not valid",success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
