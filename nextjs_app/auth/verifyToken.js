@@ -17,11 +17,11 @@ export async function verifyAuth(token){
            verified = {userId:userData.payload.id, userName:userData.payload.name, success: true}
             return verified;
        }else{
-        verified = {success:false,userData:null,erro:"in token no data"};
+        verified = {success:false,userData:null,msg:"in token no data"};
         return verified;
        }
       }catch(error){
-        verified = {success:false,userData:null,erro:error.message};
+        verified = {success:false,userData:null,msg:error.message};
         return verified;
       }
 }
