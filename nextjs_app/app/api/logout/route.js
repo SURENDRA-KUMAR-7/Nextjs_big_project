@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 export async function GET(req){
     let result;
     try{
-        const response = NextResponse.json({success:true,message:"Logout Successfully",url:req.url},{status:200});
+        const url = await req.url;
+        const response = NextResponse.json({success:true,message:"Logout Successfully",url},{status:200});
         response.cookies.set("authToken",'',{ secure: true, httpOnly: true});
         return response;
     }catch(err){
