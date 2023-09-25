@@ -4,8 +4,7 @@ import EarnLevels from "@/models/earnLevelM";
 import { NextResponse } from "next/server";
 import { verifyAuth } from '@/auth/verifyToken';
 
-const dataFromToken = async(request)=>{
-    const token = request.cookies.get("authToken")?.value || '';
+const dataFromToken = async(token)=>{
     const data = await verifyAuth(token);
     return data;
 }
@@ -13,8 +12,9 @@ const dataFromToken = async(request)=>{
 export async function POST(req){
     let result;
     try{
+        const token = req.cookies.get("authToken")?.value || '';
         const {amount} = await req.json();
-        const isUser = await dataFromToken(req);
+        const isUser = await dataFromToken(token);
         if(isUser.success){
             const userid = isUser.userId;
                 await connectToMongoDB();
