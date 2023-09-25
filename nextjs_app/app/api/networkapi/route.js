@@ -27,7 +27,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:isUser.error,success:false};
+        result = {error:isUser.erro,success:false};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
