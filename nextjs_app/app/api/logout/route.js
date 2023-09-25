@@ -9,8 +9,8 @@ export async function GET(req){
         response.cookies.set("authToken",'',{ secure: true, httpOnly: true});
         return response;
     }catch(err){
-        console.log(err.message);
-        result = {success:false, message:"Somethig went wrog"};
+        // console.log();
+        result = {success:false, message:err.message};
         return NextResponse.json(result);
     }finally{
         await mongoose.connection.close();
