@@ -27,7 +27,7 @@ export async function GET(req) {
                 return NextResponse.json(result,{status:200});
             }
     }else{
-        result = {error:"Token Not valid",success:false};
+        result = {error:"Token Not valid",success:false,url:req.url};
         return NextResponse.json(result,{status:200});
     }  
 }catch(err){
