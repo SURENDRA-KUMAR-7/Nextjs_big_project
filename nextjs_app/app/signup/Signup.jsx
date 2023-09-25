@@ -64,7 +64,8 @@ const Signup = () => {
     try {
       setIsLoading(true);
       res = await SignupUser(formdata);
-          } catch (error) {
+          } catch (err) {
+      console.log(err.message);
             res = {error:"something went wrog Try-again!!",success:false};
           } finally {
             setIsLoading(false);
